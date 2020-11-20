@@ -1,0 +1,4 @@
+---
+# Specify the list of users with the respective processes to identify
+- users:
+    - jboss: ['java']
