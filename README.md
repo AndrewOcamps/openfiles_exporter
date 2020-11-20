@@ -1,9 +1,45 @@
 # openfiles_exporter
 Counter of files opened by a specific linux user
 
-### Start the collector by the following way
+### Specify the list of users with the respective processes to identify
+
+``` yaml
+# Configuration File 'configuration.yml'
+---
+- users:
+    - jboss: ['java']
+    - another_user: ['process1', 'process2', '...']
 ```
-./startcollector.sh
+
+### Start the collector by the following way
+#### Using Python directly
+> Requires python 3
+
+_Install dependencies_
+```
+pip install -r requirements.txt
+```
+_Start the process and leave it running in the background_
+```
+python collector.py </dev/null >> logexp.txt 2>&1 & echo $! > pidexp.txt
+```
+#### Using Python with virtual environment
+> Requires python 3 and virtualenv
+
+
+_Initialize virtual environment_
+```
+virtualenv -p python3 venv
+source venv/bin/activate
+```
+
+_Install dependencies_
+```
+(venv) pip install -r requirements.txt
+```
+_Start the process with a script_
+```
+(venv) ./startcollector.py
 ```
 
 #### The pid of the process is stored in the following directory
